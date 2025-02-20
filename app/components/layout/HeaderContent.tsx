@@ -7,7 +7,9 @@ const HeaderContent = ({
 }) => {
   return (
     <div className="flex flex-col gap-y-2 mb-3">
-      <h1 className="text-2xl md:text-3xl font-semibold">{title}</h1>
+      <h1 className="text-2xl text-primary md:text-3xl font-semibold">
+        {title}
+      </h1>
       <p className="text-sm text-muted-foreground">{subTitle}</p>
     </div>
   );

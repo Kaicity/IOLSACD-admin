@@ -1,4 +1,4 @@
-import { Calendar, FileText, Home, Info, User } from "lucide-react";
+import { Calendar, FileText, Home, Info, PieChart, User } from "lucide-react";
 import type NavLink from "../types/nav-link.type";
 
 // Dữ liệu navLinks
@@ -53,6 +53,14 @@ export const navLinks: NavLink[] = [
     isActive: false,
     children: [],
     group: "management",
+  },
+  {
+    path: "/dashboard/statistic",
+    label: "Báo cáo",
+    icon: PieChart,
+    isActive: false,
+    children: [],
+    group: "statistic",
   },
   {
     path: "/general",

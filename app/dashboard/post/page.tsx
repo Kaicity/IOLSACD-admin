@@ -1,3 +1,3 @@
 export default function PostPage() {
-  return <div className="">PostPage</div>;
+  return <div className=""></div>;
 }

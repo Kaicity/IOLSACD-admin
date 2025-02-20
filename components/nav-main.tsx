@@ -19,13 +19,18 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import type NavLink from "@/app/types/nav-link.type";
+import clsx from "clsx";
+import { usePathname } from "next/navigation";
 
 export function NavMain({ items }: { items: NavLink[] }) {
+  const pathVariable = usePathname();
+
   const mainItems = items.filter((item) => item.group === "main");
   const managementItems = items.filter((item) => item.group === "management");
   const generalInformations = items.filter(
     (item) => item.group === "general-information"
   );
+  const statisticItems = items.filter((item) => item.group === "statistic");
 
   const renderItem = (item: NavLink) => (
     <Collapsible
@@ -38,7 +43,13 @@ export function NavMain({ items }: { items: NavLink[] }) {
         <CollapsibleTrigger asChild>
           {!item.children || item.children.length === 0 ? (
             <Link href={item.path}>
-              <SidebarMenuButton tooltip={item.label}>
+              <SidebarMenuButton
+                tooltip={item.label}
+                className={clsx(
+                  "hover:bg-primary hover:text-white",
+                  item.path === pathVariable ? "text-white bg-primary" : ""
+                )}
+              >
                 {item.icon && <item.icon />}
                 <span>{item.label}</span>
                 {item.children && item.children.length > 0 && (
@@ -47,7 +58,13 @@ export function NavMain({ items }: { items: NavLink[] }) {
               </SidebarMenuButton>
             </Link>
           ) : (
-            <SidebarMenuButton tooltip={item.label}>
+            <SidebarMenuButton
+              tooltip={item.label}
+              className={clsx(
+                "hover:bg-primary hover:text-white",
+                item.path === pathVariable ? "text-white bg-primary" : ""
+              )}
+            >
               {item.icon && <item.icon />}
               <span>{item.label}</span>
               {item.children && item.children.length > 0 && (
@@ -61,7 +78,15 @@ export function NavMain({ items }: { items: NavLink[] }) {
             <SidebarMenuSub>
               {item.children.map((subItem) => (
                 <SidebarMenuSubItem key={subItem.path}>
-                  <SidebarMenuSubButton asChild>
+                  <SidebarMenuSubButton
+                    asChild
+                    className={clsx(
+                      "hover:bg-primary hover:text-white",
+                      subItem.path === pathVariable
+                        ? "text-white bg-primary"
+                        : ""
+                    )}
+                  >
                     <Link href={subItem.path}>
                       <span>{subItem.label}</span>
                     </Link>
@@ -79,21 +104,36 @@ export function NavMain({ items }: { items: NavLink[] }) {
     <SidebarGroup>
       {mainItems.length > 0 && (
         <>
-          <SidebarGroupLabel>Chính</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-muted-foreground">
+            Tổng quan
+          </SidebarGroupLabel>
           <SidebarMenu>{mainItems.map(renderItem)}</SidebarMenu>
         </>
       )}
 
       {managementItems.length > 0 && (
         <>
-          <SidebarGroupLabel>Quản lý</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-muted-foreground">
+            Quản lý
+          </SidebarGroupLabel>
           <SidebarMenu>{managementItems.map(renderItem)}</SidebarMenu>
+        </>
+      )}
+
+      {statisticItems.length > 0 && (
+        <>
+          <SidebarGroupLabel className="text-muted-foreground">
+            Thống kê
+          </SidebarGroupLabel>
+          <SidebarMenu>{statisticItems.map(renderItem)}</SidebarMenu>
         </>
       )}
 
       {generalInformations.length > 0 && (
         <>
-          <SidebarGroupLabel>Tùy chỉnh</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-muted-foreground">
+            Tùy chỉnh
+          </SidebarGroupLabel>
           <SidebarMenu>{generalInformations.map(renderItem)}</SidebarMenu>
         </>
       )}

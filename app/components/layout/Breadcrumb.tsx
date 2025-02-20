@@ -56,7 +56,7 @@ const BreadcrumbNavLink = () => {
               <BreadcrumbSeparator className="hidden md:block" />
               <BreadcrumbItem>
                 {isLast ? (
-                  <BreadcrumbPage className="text-brandSecondary font-medium">
+                  <BreadcrumbPage className="text-primary font-semibold">
                     {label}
                   </BreadcrumbPage>
                 ) : (
