@@ -12,7 +12,7 @@ import {
 import Image from "next/image";
 
 export function TeamSwitcher() {
-  const { isMobile } = useSidebar();
+  // const { isMobile } = useSidebar();
 
   return (
     <SidebarMenu>
