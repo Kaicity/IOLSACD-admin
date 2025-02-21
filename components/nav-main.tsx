@@ -18,7 +18,7 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import Link from "next/link";
-import type NavLink from "@/app/types/nav-link.type";
+import type NavLink from "@/app/models/nav-link.type";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 

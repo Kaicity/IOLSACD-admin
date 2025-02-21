@@ -1,5 +1,5 @@
 import { Calendar, FileText, Home, Info, PieChart, User } from "lucide-react";
-import type NavLink from "../types/nav-link.type";
+import type NavLink from "../models/nav-link.type";
 
 // Dữ liệu navLinks
 export const navLinks: NavLink[] = [

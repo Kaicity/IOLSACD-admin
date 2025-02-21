@@ -7,7 +7,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-import BreadcrumbNavLink from "../components/layout/Breadcrumb";
+import BreadcrumbNavLink from "../components/dashboard/Breadcrumb";
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
@@ -21,7 +21,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             <BreadcrumbNavLink />
           </div>
         </header>
-        <main className="flex flex-1 flex-col gap-4 p-4 pt-0 my-8">
+        <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
           {children}
         </main>
       </SidebarInset>
