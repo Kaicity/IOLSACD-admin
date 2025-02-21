@@ -27,6 +27,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { CircleSlash2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -36,7 +37,8 @@ interface DataTableProps<TData, TValue> {
 export function DataTable<TData, TValue>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) {
+  path,
+}: DataTableProps<TData, TValue> & { path: string }) {
   const table = useReactTable({
     data,
     columns,
@@ -66,6 +68,8 @@ export function DataTable<TData, TValue>({
 
     return [...new Set(pages)].sort((a, b) => a - b);
   };
+
+  const navigation = useRouter();
 
   return (
     <div>
@@ -98,7 +102,9 @@ export function DataTable<TData, TValue>({
         {/* Nút tạo mới */}
         <Button
           className="w-full sm:w-auto ml-auto font-bold"
-          onClick={() => {}}
+          onClick={() => {
+            navigation.push(`${path}`);
+          }}
         >
           Tạo mới
         </Button>

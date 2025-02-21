@@ -41,7 +41,8 @@ const BreadcrumbNavLink = () => {
 
   const findLabelByPath = (path: string): string => {
     const found = flattenedNavLinks.find((item) => item.path === path);
-    return found ? found.label : path;
+    // return found ? found.label : path;
+    return found ? found.label : "";
   };
 
   return (

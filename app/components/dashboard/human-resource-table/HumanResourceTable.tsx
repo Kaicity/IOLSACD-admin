@@ -86,6 +86,7 @@ const columns: ColumnDef<HumanResource>[] = [
             variant="ghost"
             size="sm"
             onClick={() => handleDelete(resource)}
+            className="text-red-500"
           >
             <Trash className="h-4 w-4" />
           </Button>
@@ -108,5 +109,11 @@ const handleDelete = (resource: HumanResource) => {
 };
 
 export function HumanResourceTable() {
-  return <DataTable columns={columns} data={dataHumanResource} />;
+  return (
+    <DataTable
+      columns={columns}
+      data={dataHumanResource}
+      path={"/dashboard/human-resource/new"}
+    />
+  );
 }
