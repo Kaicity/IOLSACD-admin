@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { ChevronsUpDown, Plus } from "lucide-react";
 import Logo from "@/public/logo.jpg";
 
 import {

@@ -3,19 +3,16 @@
 import * as React from "react";
 
 import { NavMain } from "@/components/nav-main";
-import { NavProjects } from "@/components/nav-projects";
+
 import { NavUser } from "@/components/nav-user";
 import { TeamSwitcher } from "@/components/team-switcher";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import { NavRoot } from "./nav-root";
-import { SquareTerminal } from "lucide-react";
 import { navLinks } from "@/app/constants/navLinkItem";
 
 const navUser = {
