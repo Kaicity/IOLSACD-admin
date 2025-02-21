@@ -73,7 +73,7 @@ export function DataTable<TData, TValue>({
   return (
     <div>
       {/* Search Input */}
-      <div className="flex items-center gap-2 py-4">
+      <div className="flex flex-wrap items-center gap-2 py-4">
         <Input
           placeholder="Search by name..."
           value={
@@ -111,59 +111,66 @@ export function DataTable<TData, TValue>({
 
       {/* Table */}
 
-      <Table className="min-w-max w-full border-collapse">
-        <TableHeader className="bg-gray-100">
-          {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <TableHead
-                  key={header.id}
-                  className="text-muted-foreground font-bold text-md"
-                >
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                </TableHead>
-              ))}
-            </TableRow>
-          ))}
-        </TableHeader>
-        <TableBody>
-          {table.getRowModel().rows?.length ? (
-            table.getRowModel().rows.map((row) => (
-              <TableRow
-                key={row.id}
-                data-state={row.getIsSelected() && "selected"}
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
+      <div className="relative w-full overflow-auto">
+        <Table className="min-w-max">
+          <TableHeader className="bg-gray-100">
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <TableHead
+                    key={header.id}
+                    className="text-muted-foreground font-bold text-md"
+                  >
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
                 ))}
               </TableRow>
-            ))
-          ) : (
-            <TableRow>
-              <TableCell colSpan={columns.length} className="h-24">
-                <div className="mx-auto flex flex-col items-center gap-2">
-                  <p> Không có dữ liệu.</p>
-                  <CircleSlash2 className="w-4 h-4" />
-                </div>
-              </TableCell>
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={columns.length} className="h-24">
+                  <div className="mx-auto flex flex-col items-center gap-2">
+                    <p> Không có dữ liệu.</p>
+                    <CircleSlash2 className="w-4 h-4" />
+                  </div>
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
 
       {/* Pagination */}
       <div className="flex flex-wrap items-center justify-center sm:justify-between space-y-2 sm:space-y-0 sm:space-x-6 lg:space-x-8 py-4">
         {/* Page Info */}
         <div className="text-sm text-muted-foreground">
-          Trang {table.getState().pagination.pageIndex + 1} trên{" "}
-          {table.getPageCount()}
+          <span className="text-primary">
+            Trang {table.getState().pagination.pageIndex + 1}
+          </span>{" "}
+          | trên tổng {table.getPageCount()} trang
         </div>
 
         {/* Pagination Buttons */}
