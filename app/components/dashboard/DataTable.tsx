@@ -14,7 +14,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 import {
@@ -26,7 +25,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { CircleSlash2 } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -36,8 +34,7 @@ interface DataTableProps<TData, TValue> {
 export function DataTable<TData, TValue>({
   columns,
   data,
-  path,
-}: DataTableProps<TData, TValue> & { path: string }) {
+}: DataTableProps<TData, TValue>) {
   const table = useReactTable({
     data,
     columns,
@@ -68,49 +65,9 @@ export function DataTable<TData, TValue>({
     return [...new Set(pages)].sort((a, b) => a - b);
   };
 
-  const navigation = useRouter();
-
   return (
     <div>
-      {/* Search Input */}
-      <div className="flex flex-wrap items-center gap-2 py-4">
-        <Input
-          placeholder="Search by name..."
-          value={
-            (table.getColumn("fullName")?.getFilterValue() as string) ?? ""
-          }
-          onChange={(event) =>
-            table.getColumn("fullName")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-
-        <Select>
-          <SelectTrigger className="w-full sm:w-[180px]">
-            <SelectValue placeholder="Lọc theo chức vụ" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="admin">Admin</SelectItem>
-              <SelectItem value="user">Người dùng</SelectItem>
-              <SelectItem value="staff">Nhân viên</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-
-        {/* Nút tạo mới */}
-        <Button
-          className="w-full sm:w-auto ml-auto font-bold"
-          onClick={() => {
-            navigation.push(`${path}`);
-          }}
-        >
-          Tạo mới
-        </Button>
-      </div>
-
       {/* Table */}
-
       <div className="relative w-full overflow-auto">
         <Table className="min-w-max">
           <TableHeader className="bg-gray-100">

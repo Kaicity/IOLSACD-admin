@@ -2,15 +2,10 @@
 
 import { Activity, FileText, Podcast, Users } from "lucide-react";
 import {
-  BarChart,
-  Bar,
   XAxis,
   YAxis,
   Tooltip,
   ResponsiveContainer,
-  PieChart,
-  Cell,
-  Pie,
   LineChart,
   CartesianGrid,
   Legend,
